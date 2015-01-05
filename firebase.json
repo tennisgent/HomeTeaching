@@ -1,0 +1,9 @@
+{
+  "firebase": "hometeaching",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

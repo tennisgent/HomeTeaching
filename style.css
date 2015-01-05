@@ -1,0 +1,33 @@
+.companionship-contacts {
+  display: inline-block;
+  width: 30%; }
+
+.companionship-list {
+  display: inline-block;
+  width: 70%;
+  margin-left: -4px; }
+
+.contact {
+  margin: 5px 8px;
+  background-color: #38aeff;
+  padding: 5px 8px; }
+
+.companionship {
+  display: inline-block;
+  margin: 5px 8px;
+  background-color: #38aeff;
+  padding: 5px 8px;
+  min-width: 180px;
+  min-height: 50px; }
+
+.companionship-new {
+  display: inline-block;
+  margin: 5px 8px;
+  background-color: #38aeff;
+  padding: 5px 8px;
+  min-width: 180px;
+  min-height: 50px;
+  color: #3856ff;
+  font-size: 20px;
+  text-align: center;
+  border: 4px dashed #3856ff; }

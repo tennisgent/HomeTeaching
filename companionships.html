@@ -1,0 +1,34 @@
+<div class="companionships-container">
+    <div class="companionship-contacts">
+        <div class="contact" ng-repeat="contact in ctrl.contacts"
+             ng-drag="true" ng-drag-data="contact" draggable="false">
+            {{contact.firstName}} {{contact.lastName}}
+        </div>
+    </div>
+    <div class="companionship-list">
+        <div class="companionship" ng-repeat="companionship in ctrl.companionships">
+            Companions:<br>
+            <div ng-repeat="compId in companionship.comps" ng-init="comp = ctrl.contactsAsObject[compId]">
+                {{ctrl.contactsAsObject[compId].firstName}}
+                {{ctrl.contactsAsObject[compId].lastName}}
+            </div>
+            Families:<br>
+            <div ng-repeat="famId in companionship.families" ng-init="fam = ctrl.contactsAsObject[famId]">
+                {{ctrl.contactsAsObject[compId].lastName}}
+                <span ng-if="!$last">,</span>
+            </div>
+        </div>
+        <div class="companionship-new" ng-drop="true" ng-drop-success="ctrl.onCompanionDrop($data,$event)">
+            <span ng-hide="ctrl.newComp.comps.length">Drop Name Here</span>
+            <span ng-show="ctrl.newComp.comps.length">New Companionship:<br></span>
+            <span ng-repeat="comp in ctrl.newComp.comps">
+                {{comp.firstName}}
+                {{comp.lastName}}
+                <br>
+            </span>
+            <button ng-click="ctrl.saveCompanionship(newComp)" ng-show="ctrl.newComp.comps.length">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

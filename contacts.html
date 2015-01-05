@@ -1,0 +1,14 @@
+<div class="contact-container">
+    <div class="contact new">
+        <input type="text" ng-model="newContact.firstName" placeholder="First Name">
+        <input type="text" ng-model="newContact.lastName" placeholder="Last Name">
+        <input type="text" ng-model="newContact.address" placeholder="Address">
+        <button ng-click="ctrl.addContact(newContact)">Add Contact</button>
+    </div>
+    <hr>
+    <div class="contact" ng-repeat="contact in ctrl.contacts | orderBy:'lastName'">
+        {{contact.firstName}}
+        {{contact.lastName}}
+        <p>{{contact.address}}</p>
+    </div>
+</div>
