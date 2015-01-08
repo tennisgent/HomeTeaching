@@ -3,6 +3,10 @@
         <div class="contact" ng-repeat="contact in ctrl.contacts"
              ng-drag="true" ng-drag-data="contact" draggable="false">
             {{contact.firstName}} {{contact.lastName}}
+            <span class="contact-icons">
+                <i class="icon-user"></i>
+                <i class="icon-group"></i>
+            </span>
         </div>
     </div>
     <div class="companionship-list">

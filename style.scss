@@ -1,34 +1,53 @@
-.companionship-contacts {
+@mixin inline-block(){
 	display: inline-block;
+	vertical-align: top;
+	margin-left: -4px;
+	&:first-child{
+		margin-left: 0;
+	}
+}
+
+body, body *{
+	font-family: 'Open Sans', sans-serif;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.companionship-contacts {
+	@include inline-block();
 	width: 30%;
+	padding: 10px;
 }
 
 .companionship-list {
-	display: inline-block;
-	width: 70%;
-	margin-left: -4px;
+	@include inline-block();
+	width: 68%;
+	margin-left: -4px !important;
 }
 
 .contact{
-	margin: 5px 8px;
+	margin: 1%;
 	background-color: #38aeff;
-	padding: 5px 8px;
+	padding: 8px 12px;
+	.contact-icons{
+		float: right;
+		> i{
+			line-height: 20px;
+			font-size: 20px;
+		}
+	}
 }
-.companionship{
-	display: inline-block;
-	margin: 5px 8px;
+.companionship,
+.companionship-new{
+	@include inline-block();
+	margin: 1%;
 	background-color: #38aeff;
 	padding: 5px 8px;
-	min-width: 180px;
-	min-height: 50px;
+	min-height: 150px;
+	min-width: 23%;
 }
 .companionship-new{
-	display: inline-block;
-	margin: 5px 8px;
-	background-color: #38aeff;
-	padding: 5px 8px;
-	min-width: 180px;
-	min-height: 50px;
 	color: #3856ff;
 	font-size: 20px;
 	text-align: center;

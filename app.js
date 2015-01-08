@@ -25,9 +25,12 @@
                 })
         }])
 
-        .controller('ContactsController', ['$scope', '$firebase', 'Urls',
-            function($scope, $firebase, urls){
-                var ref = new Firebase(urls.firebase);
+        .factory('FirebaseRef', ['Urls', function(urls){
+            return new Firebase(urls.firebase);
+        }])
+
+        .controller('ContactsController', ['$scope', '$firebase', 'Urls', 'FirebaseRef',
+            function($scope, $firebase, urls, ref){
                 var contacts = $firebase(ref.child('contacts'));
 
                 this.contacts = contacts.$asObject();
@@ -41,10 +44,9 @@
             }
         ])
 
-        .controller('CompanionshipsController', ['$scope', '$firebase', 'Urls',
-            function($scope, $firebase, urls){
+        .controller('CompanionshipsController', ['$scope', '$firebase', 'Urls', 'FirebaseRef', '$window',
+            function($scope, $firebase, urls, ref, $window){
                 var vm = this,
-                    ref = new Firebase(urls.firebase),
                     contacts = $firebase(ref.child('contacts')),
                     comps = $firebase(ref.child('companionships'));
 
@@ -54,22 +56,26 @@
 
                 vm.contacts.$loaded().then(function(data){
                     angular.forEach(data, function(contact){
-                        if(typeof contact === 'object')
+                        if(typeof contact === 'object'){
                             vm.contactsAsObject[contact.$id] = contact;
+                        }
                     });
-                    console.log(vm.contactsAsObject);
                 });
 
                 var baseComp = {comps: [], families: []};
 
                 vm.newComp = angular.copy(baseComp);
 
-                vm.onCompanionDrop = function(comp){
-                    vm.newComp.comps.push(comp);
+                vm.onCompanionDrop = function onCompanionDrop(comp){
+                    if(vm.isAssignedToFamily(comp)){
+                        $window.alert(comp.firstName + ' ' + comp.lastName + ' is already assigned to a companionship.');
+                    }else{
+                        vm.newComp.comps.push(comp);
+                    }
                 };
 
-                vm.saveCompanionship = function(){
-                    var newComp = {comps: [], families: []};
+                vm.saveCompanionship = function saveCompanionship(){
+                    var newComp = angular.copy(baseComp);
                     angular.forEach(this.newComp.comps, function(comp){
                         newComp.comps.push(comp.$id);
                     });
@@ -80,6 +86,15 @@
                         vm.newComp = angular.copy(baseComp);
                     });
                 };
+
+                vm.isAssignedToFamily = function isAssignedToFamily(comp){
+                    for(var i=0; i<vm.companionships.length; i++){
+                        if(vm.companionships[i].comps.indexOf(comp.$id)){
+                            return true;
+                        }
+                    }
+                    return false;
+                }
 
             }
         ])
