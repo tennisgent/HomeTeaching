@@ -7,50 +7,16 @@ body, body * {
   box-sizing: border-box;
   /* Opera/IE 8+ */ }
 
-.companionship-contacts {
-  display: inline-block;
-  vertical-align: top;
-  margin-left: -4px;
-  width: 30%;
-  padding: 10px; }
-  .companionship-contacts:first-child {
-    margin-left: 0; }
-
-.companionship-list {
-  display: inline-block;
-  vertical-align: top;
-  margin-left: -4px;
-  width: 68%;
-  margin-left: -4px !important; }
-  .companionship-list:first-child {
-    margin-left: 0; }
+.contact-icons {
+  float: right; }
 
 .contact {
-  margin: 1%;
-  background-color: #38aeff;
-  padding: 8px 12px; }
-  .contact .contact-icons {
-    float: right; }
-    .contact .contact-icons > i {
-      line-height: 20px;
-      font-size: 20px; }
+  border-bottom: 1px solid #bbb; }
 
-.companionship,
-.companionship-new {
-  display: inline-block;
-  vertical-align: top;
-  margin-left: -4px;
-  margin: 1%;
-  background-color: #38aeff;
-  padding: 5px 8px;
-  min-height: 150px;
-  min-width: 23%; }
-  .companionship:first-child,
-  .companionship-new:first-child {
-    margin-left: 0; }
-
-.companionship-new {
-  color: #3856ff;
-  font-size: 20px;
-  text-align: center;
-  border: 4px dashed #3856ff; }
+.companionship .companionship-header {
+  font-size: 22px;
+  font-weight: 200;
+  margin-bottom: 8px;
+  background-color: #2196f3;
+  padding: 8px;
+  margin: -8px -8px 8px -8px; }

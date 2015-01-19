@@ -1,38 +1,59 @@
-<div class="companionships-container">
-    <div class="companionship-contacts">
-        <div class="contact" ng-repeat="contact in ctrl.contacts"
-             ng-drag="true" ng-drag-data="contact" draggable="false">
-            {{contact.firstName}} {{contact.lastName}}
-            <span class="contact-icons">
-                <i class="icon-user"></i>
-                <i class="icon-group"></i>
-            </span>
-        </div>
+<div class="companionships-container" md-content layout="row" layout-padding layout-fill>
+    <div class="companionship-contacts" flex="30" layout="column">
+
+        <md-card ng-repeat="contact in ctrl.contacts" ng-drag="true" ng-center-anchor="true"
+                 ng-drag-data="contact" draggable="false" class="contact">
+            <md-card-content>
+                <span class="md-tile-content">
+                    {{contact.firstName}} {{contact.lastName}}
+                </span>
+                <span class="contact-icons">
+                    <i class="icon-user"></i>
+                    <i class="icon-group"></i>
+                </span>
+            </md-card-content>
+        </md-card>
+
     </div>
-    <div class="companionship-list">
-        <div class="companionship" ng-repeat="companionship in ctrl.companionships">
-            Companions:<br>
-            <div ng-repeat="compId in companionship.comps" ng-init="comp = ctrl.contactsAsObject[compId]">
-                {{ctrl.contactsAsObject[compId].firstName}}
-                {{ctrl.contactsAsObject[compId].lastName}}
-            </div>
-            Families:<br>
-            <div ng-repeat="famId in companionship.families" ng-init="fam = ctrl.contactsAsObject[famId]">
-                {{ctrl.contactsAsObject[compId].lastName}}
-                <span ng-if="!$last">,</span>
-            </div>
-        </div>
-        <div class="companionship-new" ng-drop="true" ng-drop-success="ctrl.onCompanionDrop($data,$event)">
-            <span ng-hide="ctrl.newComp.comps.length">Drop Name Here</span>
-            <span ng-show="ctrl.newComp.comps.length">New Companionship:<br></span>
-            <span ng-repeat="comp in ctrl.newComp.comps">
-                {{comp.firstName}}
-                {{comp.lastName}}
-                <br>
-            </span>
-            <button ng-click="ctrl.saveCompanionship(newComp)" ng-show="ctrl.newComp.comps.length">
-                Save
-            </button>
-        </div>
+    <div class="companionship-list" flex="70" layout="row" layout-wrap>
+
+        <md-card class="companionship" ng-repeat="companionship in ctrl.companionships" flex="33">
+            <md-card-content>
+                <div class="companionship-header md-accent">
+                    <span ng-repeat="compId in companionship.comps">
+                        {{ctrl.contactsAsObject[compId].lastName}}
+                        <span ng-if="!$last"> / </span>
+                    </span>
+                </div>
+                <md-content>
+                    <p>
+                        <div ng-repeat="compId in companionship.comps">
+                            {{ctrl.contactsAsObject[compId].firstName}}
+                            {{ctrl.contactsAsObject[compId].lastName}}
+                        </div>
+                    </p>
+                    <strong>Families:</strong><br>
+                    <div ng-repeat="famId in companionship.families" ng-init="fam = ctrl.contactsAsObject[famId]">
+                        {{ctrl.contactsAsObject[compId].lastName}}
+                    </div>
+                </md-content>
+            </md-card-content>
+        </md-card>
+
+        <md-card class="companionship-new" flex="33" ng-drop="true" ng-drop-success="ctrl.onCompanionDrop($data,$event)">
+            <md-card-content>
+                <h4 ng-hide="ctrl.newComp.comps.length">Drop Name Here</h4>
+                <h4 ng-show="ctrl.newComp.comps.length">New Companionship:</h4>
+                <span ng-repeat="comp in ctrl.newComp.comps">
+                    {{comp.firstName}}
+                    {{comp.lastName}}
+                    <br>
+                </span>
+                <button ng-click="ctrl.saveCompanionship(newComp)" ng-show="ctrl.newComp.comps.length">
+                    Save
+                </button>
+            </md-card-content>
+        </md-card>
+
     </div>
 </div>
